@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<input type="text" id="field">
+		<div id="suggestions" style="cursor: pointer">
+		
+		</div>
+		
+		<script>
+		  // Builds up an array with global variable names, like
+		  // 'alert', 'document', and 'scrollTo'
+		  var terms = [];
+		  for (var name in window)
+		    terms.push(name);
+		
+		  var field = document.querySelector('#field');
+		  var suggs = document.querySelector('#suggestions');
+		  
+		  field.addEventListener('input',function(event){
+		      while (suggs.firstChild) {
+		          suggs.removeChild(suggs.firstChild);
+		      }
+		      var text = field.value;
+		      for (var s in terms){
+		          if (terms[s].indexOf(text) == 0 && field.value != ''){
+		              var li = document.createElement('li');
+		              var node = document.createTextNode(terms[s]);
+		              li.appendChild(node);
+		              suggs.appendChild(li);
+		          }
+		      }
+		      
+		      var lis = document.querySelectorAll('li');
+		      for (var i = 0; i < lis.length; ++i){
+		          lis[i].addEventListener('click', function(event){ 
+		              field.value = event.target.textContent;
+		          });
+		      }   
+		  });
+		</script>
+	</body>
+</html>
+

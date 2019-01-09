@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<input type="text">
+		<script>
+			var field = document.querySelector("input");
+			// Your code here.
+			//Ingnored symbols
+			var test = "QWXqwx";
+			field.addEventListener("keydown", event => {
+				if (test.indexOf(event.key) != -1){
+				    event.preventDefault();
+				}    
+			});
+		</script>
+
+	</body>
+</html>

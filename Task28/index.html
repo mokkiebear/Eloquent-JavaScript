@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<canvas width="600" height="200"></canvas>
+		<script>
+			var cx = document.querySelector("canvas").getContext("2d");
+			trapezoid(50,10,40,80,40);
+			redDiam(150,10,30);
+			zigzag(220,10,100,6,10);
+			spiral(400,60,100,3);
+			star(510,60,8,50,'orange');
+			
+			
+			
+			function trapezoid(sx, sy, a, b, h){
+			    //sx,sy - start x/y positions
+			    //a,b - smallets/biggest sides
+			    //h - height
+			    cx.lineWidth = 1;
+				cx.beginPath();
+				cx.moveTo(sx,sy);
+				cx.lineTo(sx + a,sy);
+				cx.lineTo(sx + a + (b-a)/2,sy + h);
+				cx.lineTo(sx - (b-a)/2, sy + h);
+				cx.closePath();
+				cx.stroke();
+			}
+			
+			function redDiam(sx, sy, a){
+			    //sx,sy - start x/y positions
+			    //a - size of side
+			    cx.fillStyle = 'red';
+			    cx.beginPath();
+			    cx.moveTo(sx,sy);
+			    cx.lineTo(sx + a,sy + a);
+			    cx.lineTo(sx,sy + 2 * a);
+			    cx.lineTo(sx - a,sy + a);
+			    cx.closePath();
+			    cx.fill();
+			}
+			
+			function zigzag(sx,sy,l,n,o){
+			    //sx,sy - start x/y positions
+			    //n - number of zs
+			    //o - place between zs
+			    //l - length
+			    cx.lineWidth = 1;
+			    cx.beginPath();
+			    cx.moveTo(sx,sy + o);
+			    for (var i = 1; i <= 1 + 2 * n; ++i){
+			        var x = (i % 2 == 0)?sx+l:sx;
+			        cx.lineTo(x, sy + i * o);
+			    }
+			    cx.stroke();
+			}
+			
+			function spiral(sx,sy,n,s){
+			    //sx,sy - start x/y positions
+			    //n - number of lines
+			    //s - size
+			    cx.lineWidth = 1;
+			    cx.beginPath();
+			    cx.moveTo(sx,sy);
+			    for(var i = 1; i <= n; ++i){
+			        var angle = 0.2 * i;
+			        var posX = sx + angle * Math.cos(angle) * s;
+			        var posY = sy + angle * Math.sin(angle) * s;
+			        //console.log(" x: " + posX + " y:" + posY + " angle: " + angle);
+			        cx.lineTo(posX, posY);
+			    }
+			    cx.stroke();
+			}
+			
+			function star(sx,sy,n,s,color){
+			    //sx,sy - start x/y positions
+			    //n - number of ostrix shtyk [>2]
+			    //s - shape's size
+			    //color - shape's color
+			    cx.fillStyle = color;
+			    cx.moveTo(sx, sy);
+			    cx.beginPath();
+			    for (var i = 1; i <= n * 2; ++i){
+			        var angle = i * Math.PI / n * 2;
+			        var x = sx + Math.cos(angle) * s;
+			        var y = sy + Math.sin(angle) * s;
+			        cx.quadraticCurveTo(sx, sy, x, y);  
+			    }
+			    cx.fill();
+			}
+		</script>
+	</body>
+</html>
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<textarea id="code">return "hi";</textarea>
+		<button id="button">Run</button>
+		<pre id="output"></pre>
+
+		<script>
+		  var output = document.querySelector('#output');
+		  var code = document.querySelector('#code');
+		  document.querySelector('#button').addEventListener('click', function(){
+		      var func, out;
+		      try{
+		          func = new Function(code.value); 
+		          out = func();
+		      }catch(e){
+		          out = e.message;
+		      }
+		      output.textContent = out;
+		  });
+		</script>
+	</body>
+</html>
+

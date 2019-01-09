@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<canvas width="400" height="400"></canvas>
+		<script>
+		  var cx = document.querySelector("canvas").getContext("2d");
+		  var widthLine = 6;
+		  cx.strokeStyle = 'gold';
+		  var sx = 50, sy = 50, width = 300, height = 220;
+		  cx.lineWidth = widthLine;
+		  
+		  
+		  var lastTime = null;
+		  function frame(time) {
+		    if (lastTime != null)
+		      updateAnimation(Math.min(100, time - lastTime) / 1000);
+		    lastTime = time;
+		    requestAnimationFrame(frame);
+		  }
+		  requestAnimationFrame(frame);
+		  
+		  var x = 120, y = 110;
+		  var r = 20;
+		  var speed = {x:3 ,y:3};
+		  var dir = {x:1, y:1};
+		  function updateAnimation(step) {
+		      cx.clearRect(0,0,400,400);
+		      console.log(x,y);
+		      cx.beginPath();
+		      
+		      if (y >= sy + height - r - widthLine / 2){
+		          dir.y = -1;
+		      }
+		      else if (x >= sx + width - r - widthLine / 2){
+		          dir.x = -1;
+		      }
+		      else if(y <= sy + r + widthLine / 2){
+		      	dir.y = 1;    
+		      }
+		      
+		      else if (x <= sx + r + widthLine / 2){
+		         dir.x = 1;
+		      }
+		      x += dir.x * speed.x; 
+		      y += dir.y * speed.y;
+		      
+		      cx.strokeRect(sx,sy,width,height);
+		      cx.fillStyle = '#dabc1c';
+		      cx.fillRect(sx + widthLine / 2, sy + widthLine / 2, width - widthLine, height - widthLine);
+		      cx.fillStyle = '#515151';
+		      cx.arc(x,y,r,0,7);
+		      cx.fill();
+		    
+		  }
+		</script>
+	</body>
+</html>
+

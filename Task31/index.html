@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<script>
+		function get(url, format) {
+		    return new Promise(function(succeed, fail) {
+		      var req = new XMLHttpRequest();
+		      req.open("GET", url, true);
+		      req.setRequestHeader("Accept", format);
+		      req.addEventListener("load", function() {
+		        if (req.status < 400)
+		          succeed(req.responseText);
+		        else
+		          fail(new Error("Request failed: " + req.statusText));
+		      });
+		      req.addEventListener("error", function() {
+		        fail(new Error("Network error"));
+		      });
+		      req.send(null);
+		    });
+		  }
+		
+		get("http://eloquentjavascript.net/author", "text/plain").then(function(text){
+		    console.log(text);
+		},
+		function(error){
+		    console.log("ERROR: " + error);
+		});
+		
+		get("http://eloquentjavascript.net/author", "text/html").then(function(text){
+		    console.log(text);
+		},
+		function(error){
+		    console.log("ERROR: " + error);
+		});
+		
+		get("http://eloquentjavascript.net/author", "application/json").then(function(text){
+		    console.log(text);
+		},
+		function(error){
+		    console.log("ERROR: " + error);
+		});
+		
+		//Here is an error
+		/*get("http://eloquentjavascript.net/author", "application/rainbows+unicorns").then(function(text){
+		    console.log(text);
+		},
+		function(error){
+		    console.log("ERROR: " + error);
+		});*/
+		
+		</script>
+	</body>
+</html>
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Funny web source</title>
+        <style>
+          body{
+            background:#772233;
+            font-size: 16px;
+          } 
+    </style>
+    </head>
+    <body>
+        <span onclick='alert("Тыкнул");'>Написано через этот веб-редактор, ТЫК</span>
+        <a href="test.html">На страницу(пустую)</a>
+        <div>
+            <textarea id="fileContent" rows=20 cols=50></textarea>
+        </div>
+
+        <select id="files">
+            
+        </select>
+        <button id="openFile">Открыть файл</button>
+        <button id="saveFile">Сохранить файл</button>
+        <button id="deleteFile">Удалить файл/каталог</button>
+        <div>
+            <input type='text' id='folder' placeholder="Название каталога" required>
+            <button type='submit' id="createFolder">Создать папку</button>
+        </div>
+        <div>
+            <input type='text' id='file' placeholder="Название файла.ext" required>
+            <button type='submit' id="createFile">Создать файл</button>
+        </div>
+        <div style="color:white;">
+            <h3>Правила</h3>
+            <ol>
+                <li>В выпадающем списке отображаются как файлы, так и папки(у папок нет расширения).</li>
+                <li>Нельзя создать папку, если в выпадающем списке выбран файл.</li>
+                <li>Нельзя удалить папку, если она не пуста.</li>
+                <li>Создавать файлы можно только в каталогах.</li>
+                <li>Запрещено изменять файл server.js!</li>
+                <li>Файл main.js лучше не трогать!</li>
+                <li>Все остальное трогать можно.</li>
+            </ol>
+        </div>
+        <script src="./main.js"></script>
+    </body>
+</html>

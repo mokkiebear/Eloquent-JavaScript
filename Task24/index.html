@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<img src="../../img/cat.png" id="cat" style="position: absolute;">
+		<img src="../../img/hat.png" id="hat" style="position: absolute;">
+		<img src="../../img/hat.png" id="hat1" style="position: absolute;">
+		<script>
+			var cat = document.querySelector('#cat');
+			var hat = document.querySelector('#hat');
+			var hat1 = document.querySelector('#hat1');
+			var angle = 0, lastTime = null;
+
+			function animate(time) {
+				//I changed karma js, 2
+				if (lastTime != null){
+					angle += (time - lastTime) * 0.001;
+				}
+				lastTime = time;
+				//cat
+				cat.style.top = 250 + (Math.sin(angle) * 100) + 'px';
+				cat.style.left = 500 + (Math.cos(angle) * 200) + 'px';
+				//the cat and his hat orbit at opposite sides of the ellipse
+				hat.style.top = 250 + (Math.sin(angle + 3) * 100) + 'px';
+				hat.style.left = 500 + (Math.cos(angle + 3) * 200) + 'px';
+				//the hat circle around the cat
+				hat1.style.top = 250 + (Math.sin(angle) * 100) - 40 + 'px';
+				hat1.style.left = 500 + (Math.cos(angle) * 200) + 'px';
+				requestAnimationFrame(animate);
+			}
+			requestAnimationFrame(animate);
+		</script>
+
+	</body>
+</html>
